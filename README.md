@@ -1,3 +1,18 @@
+# FORKED
+
+Fixed implicit to boolean transformation of strings
+
+```
+class TestDto {
+  @IsBoolean()
+  jopa: boolean
+}
+
+const result = plainToInstance(TestDto, { jopa: 'false' })
+
+result.jopa === false
+```
+
 # class-transformer
 
 ![Build Status](https://github.com/typestack/class-transformer/workflows/CI/badge.svg)
@@ -14,40 +29,43 @@ Source code is available [here](https://github.com/pleerock/class-transformer-de
 
 ## Table of contents
 
-- [What is class-transformer](#what-is-class-transformer)
-- [Installation](#installation)
-  - [Node.js](#nodejs)
-  - [Browser](#browser)
-- [Methods](#methods)
-  - [plainToClass](#plaintoclass)
-  - [plainToClassFromExist](#plaintoclassfromexist)
-  - [classToPlain](#classtoplain)
-  - [instanceToInstance](#instanceToInstance)
-  - [serialize](#serialize)
-  - [deserialize and deserializeArray](#deserialize-and-deserializearray)
-- [Enforcing type-safe instance](#enforcing-type-safe-instance)
-- [Working with nested objects](#working-with-nested-objects)
-  - [Providing more than one type option](#providing-more-than-one-type-option)
-- [Exposing getters and method return values](#exposing-getters-and-method-return-values)
-- [Exposing properties with different names](#exposing-properties-with-different-names)
-- [Skipping specific properties](#skipping-specific-properties)
-- [Skipping depend of operation](#skipping-depend-of-operation)
-- [Skipping all properties of the class](#skipping-all-properties-of-the-class)
-- [Skipping private properties, or some prefixed properties](#skipping-private-properties-or-some-prefixed-properties)
-- [Using groups to control excluded properties](#using-groups-to-control-excluded-properties)
-- [Using versioning to control exposed and excluded properties](#using-versioning-to-control-exposed-and-excluded-properties)
-- [Сonverting date strings into Date objects](#сonverting-date-strings-into-date-objects)
-- [Working with arrays](#working-with-arrays)
-- [Additional data transformation](#additional-data-transformation)
-  - [Basic usage](#basic-usage)
-  - [Advanced usage](#advanced-usage)
-- [Other decorators](#other-decorators)
-- [Working with generics](#working-with-generics)
-- [Implicit type conversion](#implicit-type-conversion)
-- [How does it handle circular references?](#how-does-it-handle-circular-references)
-- [Example with Angular2](#example-with-angular2)
-- [Samples](#samples)
-- [Release notes](#release-notes)
+- [FORKED](#forked)
+- [class-transformer](#class-transformer)
+  - [Table of contents](#table-of-contents)
+  - [What is class-transformer⬆](#what-is-class-transformer)
+  - [Installation⬆](#installation)
+    - [Node.js⬆](#nodejs)
+    - [Browser⬆](#browser)
+  - [Methods⬆](#methods)
+    - [plainToClass⬆](#plaintoclass)
+    - [plainToClassFromExist⬆](#plaintoclassfromexist)
+    - [classToPlain⬆](#classtoplain)
+    - [instanceToInstance⬆](#instancetoinstance)
+    - [serialize⬆](#serialize)
+    - [deserialize and deserializeArray⬆](#deserialize-and-deserializearray)
+  - [Enforcing type-safe instance⬆](#enforcing-type-safe-instance)
+  - [Working with nested objects⬆](#working-with-nested-objects)
+    - [Providing more than one type option⬆](#providing-more-than-one-type-option)
+  - [Exposing getters and method return values⬆](#exposing-getters-and-method-return-values)
+  - [Exposing properties with different names⬆](#exposing-properties-with-different-names)
+  - [Skipping specific properties⬆](#skipping-specific-properties)
+  - [Skipping depend of operation⬆](#skipping-depend-of-operation)
+  - [Skipping all properties of the class⬆](#skipping-all-properties-of-the-class)
+  - [Skipping private properties, or some prefixed properties⬆](#skipping-private-properties-or-some-prefixed-properties)
+  - [Using groups to control excluded properties⬆](#using-groups-to-control-excluded-properties)
+  - [Using versioning to control exposed and excluded properties⬆](#using-versioning-to-control-exposed-and-excluded-properties)
+  - [Сonverting date strings into Date objects⬆](#сonverting-date-strings-into-date-objects)
+  - [Working with arrays⬆](#working-with-arrays)
+  - [Additional data transformation⬆](#additional-data-transformation)
+    - [Basic usage⬆](#basic-usage)
+    - [Advanced usage⬆](#advanced-usage)
+  - [Other decorators⬆](#other-decorators)
+  - [Working with generics⬆](#working-with-generics)
+  - [Implicit type conversion⬆](#implicit-type-conversion)
+  - [How does it handle circular references?⬆](#how-does-it-handle-circular-references)
+  - [Example with Angular2⬆](#example-with-angular2)
+  - [Samples⬆](#samples)
+  - [Release notes⬆](#release-notes)
 
 ## What is class-transformer[⬆](#table-of-contents)
 
